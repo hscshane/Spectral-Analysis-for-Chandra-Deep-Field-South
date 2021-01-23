@@ -1,8 +1,8 @@
-# Spectral-Analysis-for-Chandra-Deep-Field-South
+# Spectral-Analysis-for-Chandra-Deep-Field-South 
 
 Nearly all scripts are stored under /raid2/dxb/xmm/analysis/CDFS/hsc/mapfiles
 ===========================================================================================================================================================================
-#Create spectra for dxb:
+1. Create spectra for dxb:
 run run_xmm_el.sh:
     make_bkg_region_sky_el.py creates pnS005-bkg_region-sky.fits for chandra sources and extended sources
     make_bkg_region_withradec_el.py converts X,Y coordinates to RA DEC and arcmin, files porduced will be used to create pnS005-bkg_region-det.fits for chandra sources and extended sources

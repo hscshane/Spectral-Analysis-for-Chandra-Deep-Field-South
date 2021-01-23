@@ -1,0 +1,122 @@
+#!/usr/local/bin/python
+
+from __future__ import print_function
+import numpy as np
+import pyfits
+from pyslalib import slalib
+import pywcs
+import math
+import re
+from glob import glob
+
+degtorad = math.pi/180
+
+file = 'obs_id'
+f = open(file)
+lines = f.readlines()
+f.close()
+id = []
+for i in range(0,len(lines)):
+  id.append(re.split('\s+',lines[i])[0])
+  print(id[i])
+
+xmm_src = 'XMM_fk5.reg'
+fin_src = 'FinoguenovCluster_fk5.reg'
+f = open(xmm_src)
+xmm_lines = f.readlines()
+f.close()
+f = open(fin_src)
+fin_lines = f.readlines()
+f.close()
+xmm_ra =[]
+xmm_dec = []
+xmm_r = []
+fin_ra = []
+fin_dec = []
+fin_maj = []
+fin_min = []
+fin_angle = []
+for i in range(0,len(xmm_lines)):
+  xmm_ra.append(float(re.split('\s+',xmm_lines[i])[0]))
+  xmm_dec.append(float(re.split('\s+',xmm_lines[i])[1]))
+  xmm_r.append(float(re.split('\s+',xmm_lines[i])[2]))
+
+for i in range(0,len(fin_lines)):
+  fin_ra.append(float(re.split('\s+',fin_lines[i])[0]))
+  fin_dec.append(float(re.split('\s+',fin_lines[i])[1]))
+  fin_maj.append(float(re.split('\s+',fin_lines[i])[2]))
+  fin_min.append(float(re.split('\s+',fin_lines[i])[3]))
+  fin_angle.append(float(re.split('\s+',fin_lines[i])[4]))
+
+fov = "exposure_all_04_06_threshold.fits"
+#keyword=['HDUVERS', 'HDUCLASS', 'HDUCLAS1', 'HDUCLAS2','CTYPE1','CRVAL1','CRPIX1','CDELT1','CUNIT1','CTYPE2','CRVAL2','CRPIX2','CDELT2','CUNIT2']
+
+hdufov = pyfits.open(fov)
+fovdata = hdufov[0].data
+fovhdr = hdufov[0].header
+nwcs = pywcs.WCS(naxis=2)
+nwcs.wcs.crpix = [fovhdr['CRPIX1'], fovhdr['CRPIX2']]
+nwcs.wcs.cdelt = np.array([fovhdr['CDELT1'], fovhdr['CDELT2']])
+nwcs.wcs.crval = [fovhdr['CRVAL1'], fovhdr['CRVAL2']]
+nwcs.wcs.ctype = [fovhdr['CTYPE1'], fovhdr['CTYPE2']]
+
+naxis1 = 900
+naxis2 = 900
+keyword=['CTYPE1','CRVAL1','CRPIX1','CDELT1','CUNIT1','CTYPE2','CRVAL2','CRPIX2','CDELT2','CUNIT2']
+#for i in range(0,len(lines)):
+for i in range(0,len(lines)):
+  mask = np.zeros((naxis1,naxis2))
+  file = "pnS005-exp-im-400-600.fits"
+  print(file)
+  hdu = pyfits.open(file)
+  header = hdu[0].header
+  data = hdu[0].data
+  wcs = pywcs.WCS(naxis=2)
+  wcs.wcs.crpix = [header['CRPIX1'], header['CRPIX2']]
+  wcs.wcs.cdelt = np.array([header['CDELT1'], header['CDELT2']])
+  wcs.wcs.crval = [header['CRVAL1'], header['CRVAL2']]
+  wcs.wcs.ctype = [header['CTYPE1'], header['CTYPE2']]
+  pixscale = float(header['CDELT2'])
+  for pixy in range(0,naxis1):
+    for pixx in range(0,naxis2):
+      pixcoord = np.array([[pixx+1,pixy+1]])
+      skycoord = wcs.wcs_pix2sky(pixcoord,1)
+      npixcoord = nwcs.wcs_sky2pix(skycoord,1)
+      npixx = round(npixcoord[0][0])
+      npixy = round(npixcoord[0][1])
+      if npixx < naxis1 and npixy < naxis2:
+        if fovdata[npixy][npixx] > 0:
+          mask[pixy][pixx] = 1
+      else:
+        mask[pixy][pixx] = 0
+  for pixy in range(0,naxis1):
+    for pixx in range(0,naxis2):
+      if mask[pixy][pixx] != 0:
+        for k in range(0,len(xmm_lines)):
+          skycoord = np.array([[xmm_ra[k],xmm_dec[k]]])
+          pixcoord = wcs.wcs_sky2pix(skycoord,1)
+          radius = ((pixcoord[0][0]-pixx-1)**2+(pixcoord[0][1]-pixy-1)**2)**0.5*pixscale*3600
+          if radius <= xmm_r[k] :
+            mask[pixy][pixx] = 0
+        for k in range(0,len(fin_lines)):
+          skycoord = np.array([[fin_ra[k],fin_dec[k]]])
+          pixcoord = wcs.wcs_sky2pix(skycoord,1)
+          major = fin_maj[k]/(3600*pixscale)
+          minor = fin_min[k]/(3600*pixscale)
+          rotangle = -fin_angle[k]*degtorad
+          xx = pixx+1 - pixcoord[0][0]
+          yy = pixy+1 - pixcoord[0][1]
+          xp = xx*math.cos(rotangle)-yy*math.sin(rotangle)
+          yp = yy*math.cos(rotangle)+xx*math.sin(rotangle)
+          radius = xp*xp/(major*major)+yp*yp/(minor*minor)
+          if radius <= 1:
+            mask[pixy][pixx] = 0
+
+  maskfile = id[i]+"_mask_all_04_06.fits"
+  nhdu = pyfits.PrimaryHDU(mask)
+  for i in range(0,len(keyword)):
+    nhdu.header[keyword[i]]=header[keyword[i]]
+  nhdulist = pyfits.HDUList(nhdu)
+  nhdulist.writeto(maskfile)
+  hdu.close() 
+

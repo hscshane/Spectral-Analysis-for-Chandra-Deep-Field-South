@@ -1,0 +1,115 @@
+#!/bin/sh
+#
+
+#mkdir Galaxy
+
+. /usr/local/xmmsas_20160201_1833/setsas.sh 
+echo $SAS_DIR
+echo $SAS_PATH
+
+for i in 0108060401 0108060501 0108060601 0108060701 0108061801 0108061901 0108062101 0108062301 0555780101 0555780201 0555780301 0555780401 0555780501 0555780601 0555780701 0555780801 0555780901 0555781001 0555782301 0604960101 0604960201 0604960301 0604960401 0604960501 0604960601 0604960701 0604960801 0604960901 0604961001 0604961101 0604961201 0604961801
+
+#for i in 0108060601 0108061801 0108061901 0108062101 0108062301 0555780101 0555780201 0555780301 0555780401 0555780501 0555780601 0555780701 0555780801 0555780901 0555781001 0555782301 0604960101 0604960201 0604960301 0604960401 0604960501 0604960601 0604960701 0604960801 0604960901 0604961001 0604961101 0604961201 0604961801
+do
+
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/AGN
+mkdir $i
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i
+mkdir CAT1
+mkdir CAT2
+mkdir CAT3
+mkdir CAT4
+mkdir CAT5
+mkdir CAT6
+
+cp /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/$i/analysis/pnS005-clean.fits /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i
+cp /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/$i/analysis/pnS005-cheese.fits /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i
+cp /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/$i/analysis/pnS005-bkg_region-sky-original.fits /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i
+#cp /raid2/dxb/xmm/analysis/CDFS/hsc/mapfiles/CDFS4MS_REVISED.fits /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/$i/analysis
+cp /raid2/dxb/xmm/analysis/CDFS/hsc/mapfiles/region_sky_sb.py  /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i
+cp /raid2/dxb/xmm/analysis/CDFS/hsc/mapfiles/AGN.py  /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i
+chmod +x region_sky_sb.py
+chmod +x AGN.py
+/usr/local/bin/python region_sky_sb.py
+/usr/local/bin/python AGN.py
+
+
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/$i/analysis
+SAS_ODF=/raid2/dxb/xmm/downloads/CDFS/$i/ODF/summary.sas;export SAS_ODF
+echo $SAS_ODF
+SAS_CCFPATH=/raid2/dxb/xmm/analysis/hsc/ccf; export SAS_CCFPATH
+echo $SAS_CCFPATH
+SAS_CCF=/raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/$i/analysis/ccf.cif; export SAS_CCF
+echo $SAS_CCF
+
+
+for j in {1..6}
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i
+#Flux Group j
+declare -a X
+declare -a Y
+declare -a R
+declare -a F
+
+input=/raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i/AGN_CAT$j
+chmod a+r /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i/AGN_CAT$j
+while IFS=' ', read -r f1 f2 f3 f4 f5
+do
+  X+=($f1)
+  Y+=($f2)
+  R+=($f3)
+  F+=($f4)
+done <"$input"
+
+#for j in {1..5}
+#do
+#  echo "${X[$j]} ${Y[$j]} ${R[$j]}"
+#done
+
+num=${#X[@]}
+
+for k in ${!X[*]}
+do
+  echo "(X,Y) in CIRCLE(${X[$k]},${Y[$k]},${R[$k]})" 
+  
+  echo "${X[$k]} ${Y[$k]} ${R[$k]} ${F[$k]}" >>$k-agn.txt
+  
+  evselect table="pnS005-clean.fits" energycolumn="PI" withfilteredset=yes \
+  filteredset="pnS005-clean_filtered.fits" keepfilteroutput=yes filtertype="expression" \
+  expression="((X,Y) in CIRCLE(${X[$k]},${Y[$k]},${R[$k]}))&&(FLAG==0)&&(PATTERN<=4)" \
+  withspectrumset=yes spectrumset="pnS005_${k}_pi.fits" spectralbinsize=5 \
+  withspecranges=yes specchannelmin=0 specchannelmax=20479 >& ../logs/$i-pn-agn.log
+  
+#  evselect table="pnS005-clean.fits" energycolumn="PI" withfilteredset=yes \
+#  filteredset="pnS005-clean-bkg_filtered.fits" keepfilteroutput=yes filtertype="expression" \
+#  expression="(FLAG==0)&&(PATTERN<=4)&&((X,Y) in CIRCLE(${X[$k]},${Y[$k]},1500))&&!((X,Y) in CIRCLE(${X[$k]},${Y[$k]},400))" \
+#  withspectrumset=yes spectrumset="pnS005_${k}_bkg_pi.fits" spectralbinsize=5 \
+#  withspecranges=yes specchannelmin=0 specchannelmax=20479 >& ../logs/$i-pn-bkg-galaxy.log
+  
+  backscale spectrumset="pnS005_${k}_pi.fits" badpixlocation="pnS005-clean.fits" >& ../logs/$i-pn-backscale.log
+#  backscale spectrumset="pnS005_${k}_bkg_pi.fits" badpixlocation="pnS005-clean.fits" >& ../logs/$i-pn-bkg-backscale.log
+  
+  rmfgen rmfset="pnS005_${k}_rmf.fits" spectrumset="pnS005_${k}_pi.fits" >& ../logs/$i-pn-agn-rmf.log
+  
+  arfgen arfset="pnS005_${k}_arf.fits" spectrumset="pnS005_${k}_pi.fits" withrmfset=yes detmaptype=psf psfenergy=1.5 \
+  rmfset="pnS005_${k}_rmf.fits" withbadpixcorr=yes badpixlocation="pnS005-clean.fits" >& ../logs/$i-pn-agn-arf.log
+  
+  mv pnS005_${k}_pi.fits /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i/CAT$j/"$k"AGN.pi
+  #mv pnS005_${k}_bkg_pi.fits /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/backfile/$i-galaxy-${k}_bkg_pi.fits
+  mv pnS005_${k}_rmf.fits /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i/CAT$j/"$k"AGN.rmf
+  mv pnS005_${k}_arf.fits /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i/CAT$j/"$k"AGN.arf
+  mv $k-agn.txt /raid2/dxb/xmm/analysis/CDFS/hsc/AGN/$i/CAT$j
+  
+done
+
+unset X
+unset Y
+unset R
+unset F
+
+done
+
+echo "done" $i
+done

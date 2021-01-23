@@ -1,0 +1,123 @@
+#!/bin/sh
+#
+
+#mkdir Galaxy
+
+. /usr/local/xmmsas_20160201_1833/setsas.sh 
+echo $SAS_DIR
+echo $SAS_PATH
+
+#for i in 0108060401 0108060501 0108060601 0108060701 0108061801 0108061901 0108062101 0108062301 0555780101 0555780201 0555780301 0555780401 0555780501 0555780601 0555780701 0555780801 0555780901 0555781001 0555782301 0604960101 0604960201 0604960301 0604960401 0604960501 0604960601 0604960701 0604960801 0604960901 0604961001 0604961101 0604961201 0604961301 0604961801
+
+for i in 0108060601
+do
+
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy
+mkdir $i
+
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/$i/analysis
+cp /raid2/dxb/xmm/analysis/CDFS/hsc/mapfiles/CDFS4MS_REVISED.fits /raid2/dxb/xmm/analysis/CDFS/hsc/$i/analysis
+#cp /raid2/dxb/xmm/analysis/CDFS/hsc/mapfiles/region_sky_pn.py  /raid2/dxb/xmm/analysis/CDFS/hsc/$i/analysis
+cp /raid2/dxb/xmm/analysis/CDFS/hsc/mapfiles/Galaxy_pn.py  /raid2/dxb/xmm/analysis/CDFS/hsc/$i/analysis
+#cp /raid2/dxb/xmm/analysis/CDFS/hsc/mapfiles/change_radius_pn.py  /raid2/dxb/xmm/analysis/CDFS/hsc/$i/analysis
+#chmod +x region_sky_pn.py
+chmod +x Galaxy_pn.py
+#chmod +x change_radius_pn.py 
+
+cp pnS005-bkg_region-det-original.fits /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+cp pnS005-bkg_region-sky-original.fits /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+cp pnS005-back-full.pi /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+cp pnS005-clean.fits /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+cp pnS005-clean-oot.fits /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+cp pnS005-corn.fits /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+cp pnS005-corn-oot.fits /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+cp pnS005-cheese.fits /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i 
+mv pnS005-bkg_region-det-original.fits pnS005-bkg_region-det.fits
+mv pnS005-bkg_region-sky-original.fits pnS005-bkg_region-sky.fits
+
+
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/$i/analysis
+SAS_ODF=/raid2/dxb/xmm/downloads/CDFS/$i/ODF/summary.sas;export SAS_ODF
+echo $SAS_ODF
+SAS_CCFPATH=/raid2/dxb/xmm/analysis/hsc/ccf; export SAS_CCFPATH
+echo $SAS_CCFPATH
+SAS_CCF=/raid2/dxb/xmm/analysis/CDFS/hsc/$i/analysis/ccf.cif; export SAS_CCF
+echo $SAS_CCF
+
+#/usr/local/bin/python region_sky_pn.py
+#conv_reg mode=1 inputfile=pnS005-bkg_region-radec-type.fits outputfile=pnS005-bkg_region-det-type.fits imagefile=pnS005-obj-image-sky.fits
+#conv_reg mode=1 inputfile=pnS005-bkg_region-radec-type.fits outputfile=pnS005-bkg_region-det-type.fits imagefile=pnS005-obj-image-sky.fits >& ../logs/$i-pnregiongalaxy.log
+#/usr/local/bin/python change_radius_pn.py
+/usr/local/bin/python Galaxy_pn.py
+
+declare -a X
+declare -a Y
+declare -a R
+
+input=/raid2/dxb/xmm/analysis/CDFS/hsc/$i/analysis/GALAXY_CAT
+chmod a+r /raid2/dxb/xmm/analysis/CDFS/hsc/$i/analysis/GALAXY_CAT
+while IFS=' ', read -r f1 f2 f3 f4
+do
+  X+=($f1)
+  Y+=($f2)
+  R+=($f3)
+done <"$input"
+
+#for j in {1..5}
+#do
+#  echo "${X[$j]} ${Y[$j]} ${R[$j]}"
+#done
+
+num=${#X[@]}
+
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+
+#for k in ${!X[*]}
+for k in 0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 
+do
+ for t in {0..9}
+ do
+  echo -n "&&((DETX,DETY) IN circle(${X[$k+$t]},${Y[$k+$t]},${R[$k+$t]}))" >> reg-$(($k/10)).txt
+ done
+# cp reg-$k.txt /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+# rm reg-$k.txt
+ pn-spectra prefix=S005 caldb=/raid2/dxb/xmm/downloads/FWC/ESAS region=reg-$(($k/10)).txt mask=1 elow=400 ehigh=2000 pattern=4 quad1=1 quad2=1 quad3=1 quad4=1 >& $(($k/10))-pn_spectra.log
+ pn_back prefix=S005 caldb=/raid2/dxb/xmm/downloads/FWC/ESAS diag=0 elow=400 ehigh=2000 quad1=1 quad2=1 quad3=1 quad4=1 >& $(($k/10))-pn_back.log 
+ mv pnS005-obj.pi "$(($k/10))"galaxy.pi
+ mv pnS005-back.pi "$(($k/10))"galaxybkg.pi
+ mv pnS005.rmf "$(($k/10))"galaxy.rmf
+ mv pnS005.arf "$(($k/10))"galaxy.arf
+ mv pnS005-obj-im-sp-det.fits pnS005-obj-im-sp-det-reg"$(($k/10))".fits
+ mv pnS005-obj-os.pi pnS005-os-reg"$(($k/10))".pi
+done
+
+for k in 160 
+do
+ for t in {0..1}
+ do
+  echo -n "&&((DETX,DETY) IN circle(${X[$k+$t]},${Y[$k+$t]},${R[$k+$t]}))" >> reg-$(($k/10)).txt
+ done
+ pn-spectra prefix=S005 caldb=/raid2/dxb/xmm/downloads/FWC/ESAS region=reg-$(($k/10)).txt mask=1 elow=400 ehigh=2000 pattern=4 quad1=1 quad2=1 quad3=1 quad4=1 >& $(($k/10))-pn_spectra.log 
+ pn_back prefix=S005 caldb=/raid2/dxb/xmm/downloads/FWC/ESAS diag=0 elow=400 ehigh=2000 quad1=1 quad2=1 quad3=1 quad4=1 >& $(($k/10))-pn_back.log 
+ mv pnS005-obj.pi "$(($k/10))"galaxy.pi
+ mv pnS005-back.pi "$(($k/10))"galaxybkg.pi
+ mv pnS005.rmf "$(($k/10))"galaxy.rmf
+ mv pnS005.arf "$(($k/10))"galaxy.arf
+ mv pnS005-obj-im-sp-det.fits pnS005-obj-im-sp-det-reg"$(($k/10))".fits
+ mv pnS005-obj-os.pi pnS005-os-reg"$(($k/10))".pi
+done
+
+
+unset X
+unset Y
+unset R
+
+#cp region.txt /raid2/dxb/xmm/analysis/CDFS/hsc/Galaxy/$i
+
+
+
+
+done
+
+

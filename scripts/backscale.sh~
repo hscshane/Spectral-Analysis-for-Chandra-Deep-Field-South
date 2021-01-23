@@ -1,0 +1,73 @@
+#!/bin/sh
+
+. /raid2/dxb/xmm/analysis/CDFS/hsc/ini_xmm.sh
+. /usr/local/xmmsas_20160201_1833/setsas.sh 
+echo $SAS_DIR
+echo $SAS_PATH
+
+#for i in 0108060401 0108060501 0108060601 0108060701 0108061801 0108061901 0108062101 0108062301 0555780101 0555780201 0555780301 0555780401 0555780501 0555780601 0555780701 0555780801 0555780901 0555781001 0555782301 0604960101 0604960201 0604960301 0604960401 0604960501 0604960601 0604960701 0604960801 0604960901 0604961001 0604961101 0604961201 0604961301 0604961801
+
+#do
+
+#cp $i-pnS005-back-full.pi /raid2/dxb/xmm/analysis/CDFS/hsc/xspec/backup/$i-pnS005-back-full.pi
+
+SAS_ODF=/raid2/dxb/xmm/downloads/CDFS/$i/ODF/summary.sas;export SAS_ODF
+echo $SAS_ODF
+SAS_CCFPATH=/raid2/dxb/xmm/analysis/hsc/ccf; export SAS_CCFPATH
+echo $SAS_CCFPATH
+SAS_CCF=/raid2/dxb/xmm/analysis/CDFS/hsc/$i/analysis/ccf.cif; export SAS_CCF
+echo $SAS_CCF
+
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/xspec
+
+xspec
+foreach i [list 0108060401 0108060501 0108060601 0108060701 0108061801 0108061901 0108062101 0108062301 0555780101 0555780201 0555780301 0555780401 0555780501 0555780601 0555780701 0555780801 0555780901 0555781001 0555782301 0604960101 0604960201 0604960301 0604960401 0604960501 0604960601 0604960701 0604960801 0604960901 0604961001 0604961101 0604961201 0604961801] {
+	da $i-pnS005-obj-full-grp.pi
+
+	ignore 1:0.-10. 14.-**
+
+	tclout rate 1
+	scan $xspec_tclout "%f" temp
+
+	backgrnd none 
+	tclout rate 1 
+	scan $xspec_tclout "%f" sr
+
+	backgrnd $i-pnS005-back-full.pi
+
+	tclout backscal 1 s
+	scan $xspec_tclout "%f" sb
+	
+	tclout backscal 1 b
+	scan $xspec_tclout "%f" bbo
+
+	set br [expr ($sr-$temp)*($bbo/$sb)]
+	set bb [expr $br*$sb/$sr]
+
+	grppha infile="$i-pnS005-back-full.pi" outfile="$i-pnS005-back-full-new.pi" comm="CHKEY BACKSCAL $bb & exit"
+}
+exit
+
+for i in 0108060401 0108060501 0108060601 0108060701 0108061801 0108061901 0108062101 0108062301 0555780101 0555780201 0555780301 0555780401 0555780501 0555780601 0555780701 0555780801 0555780901 0555781001 0555782301 0604960101 0604960201 0604960301 0604960401 0604960501 0604960601 0604960701 0604960801 0604960901 0604961001 0604961101 0604961201 0604961801
+
+do
+
+cp $i-pnS005-back-full.pi /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/xspec/backup/$i-pnS005-back-full.pi
+rm $i-pnS005-back-full.pi
+mv $i-pnS005-back-full-new.pi $i-pnS005-back-full.pi
+
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+

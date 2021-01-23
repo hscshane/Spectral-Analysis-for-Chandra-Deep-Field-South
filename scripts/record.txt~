@@ -1,0 +1,125 @@
+addrmf first11.rmf,first12.rmf,first13.rmf,first14.rmf,first15.rmf,first16.rmf 0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666
+
+'0108060401-pnS005-obj-full-grp.pi'+'0108060501-pnS005-obj-full-grp.pi'+'0108060601-pnS005-obj-full-grp.pi'+'0108060701-pnS005-obj-full-grp.pi'+'0108061801-pnS005-obj-full-grp.pi'+'0108061901-pnS005-obj-full-grp.pi'+'0108062101-pnS005-obj-full-grp.pi'+'0108062301-pnS005-obj-full-grp.pi'+'0555780101-pnS005-obj-full-grp.pi'+'0555780201-pnS005-obj-full-grp.pi'+'0555780301-pnS005-obj-full-grp.pi'+'0555780401-pnS005-obj-full-grp.pi'+'0555780501-pnS005-obj-full-grp.pi'+'0555780601-pnS005-obj-full-grp.pi'+'0555780701-pnS005-obj-full-grp.pi'+'0555780801-pnS005-obj-full-grp.pi'+'0555780901-pnS005-obj-full-grp.pi'+'0555781001-pnS005-obj-full-grp.pi'+'0555782301-pnS005-obj-full-grp.pi'+'0604960101-pnS005-obj-full-grp.pi'+'0604960201-pnS005-obj-full-grp.pi'+'0604960301-pnS005-obj-full-grp.pi'+'0604960401-pnS005-obj-full-grp.pi'+'0604960501-pnS005-obj-full-grp.pi'+'0604960601-pnS005-obj-full-grp.pi'+'0604960701-pnS005-obj-full-grp.pi'+'0604960801-pnS005-obj-full-grp.pi'+'0604960901-pnS005-obj-full-grp.pi'+'0604961001-pnS005-obj-full-grp.pi'+'0604961101-pnS005-obj-full-grp.pi'+'0604961201-pnS005-obj-full-grp.pi'+'0604961801-pnS005-obj-full-grp.pi'
+
+1:1 0108060401-pnS005-obj-full-grp.pi 2:2 0108060501-pnS005-obj-full-grp.pi 3:3 0108060601-pnS005-obj-full-grp.pi 4:4 0108060701-pnS005-obj-full-grp.pi 5:5 0108061801-pnS005-obj-full-grp.pi 6:6 0108061901-pnS005-obj-full-grp.pi 7:7 0108062101-pnS005-obj-full-grp.pi 8:8 0108062301-pnS005-obj-full-grp.pi 9:9 0555780101-pnS005-obj-full-grp.pi 10:10 0555780201-pnS005-obj-full-grp.pi 11:11 0555780301-pnS005-obj-full-grp.pi 12:12 0555780401-pnS005-obj-full-grp.pi 13:13 0555780501-pnS005-obj-full-grp.pi 14:14 0555780601-pnS005-obj-full-grp.pi 15:15 0555780701-pnS005-obj-full-grp.pi 16:16 0555780801-pnS005-obj-full-grp.pi 17:17 0555780901-pnS005-obj-full-grp.pi 18:18 0555781001-pnS005-obj-full-grp.pi 19:19 0555782301-pnS005-obj-full-grp.pi 20:20 0604960101-pnS005-obj-full-grp.pi 21:21 0604960201-pnS005-obj-full-grp.pi 22:22 0604960301-pnS005-obj-full-grp.pi 23:23 0604960401-pnS005-obj-full-grp.pi 24:24 0604960501-pnS005-obj-full-grp.pi 25:25 0604960601-pnS005-obj-full-grp.pi 26:26 0604960701-pnS005-obj-full-grp.pi 27:27 0604960801-pnS005-obj-full-grp.pi 28:28 0604960901-pnS005-obj-full-grp.pi 29:29 0604961001-pnS005-obj-full-grp.pi 30:30 0604961101-pnS005-obj-full-grp.pi 31:31 0604961201-pnS005-obj-full-grp.pi 32:32 0604961801-pnS005-obj-full-grp.pi 
+
+lis=['0108060401','0108060501','0108060601','0108060701','0108061801','0108061901','
+     ...: 0108062101','0108062301','0555780101','0555780201','0555780301','0555780401','055578
+     ...: 0501','0555780601','0555780701','0555780801','0555780901','0555781001','0555782301',
+     ...: '0604960101','0604960201','0604960301','0604960401','0604960501','0604960601','06049
+     ...: 60701','0604960801','0604960901','0604961001','0604961101','0604961201','0604961801'
+     ...: ]
+     
+freeze 1 4 5 6 8 9 11 18 21 22 23 25 26 28 35 38 39 40 42 43 45 52 55 56 57 59 60 62 69 72 73 74 76 77 79 86 89 90 91 93 94 96 103 106 107 108 110 111 113 120 123 124 125 127 128 130 137 140 141 142 144 145 147 154 157 158 159 161 162 164 171 174 175 176 178 179 181 188 191 192 193 195 196 198 205 208 209 210 212 213 215 222 225 226 227 229 230 232 239 242 243 244 246 247 249 256 259 260 261 263 264 266 273 276 277 278 280 281 283 290 293 294 295 297 298 300 307 310 311 312 314 315 317 324 327 328 329 331 332 334 341 344 345 346 348 349 351 358 361 362 363 365 366 368 375 378 379 380 382 383 385 392 395 396 397 399 400 402 409 412 413 414 416 417 419 426 429 430 431 433 434 436 443 446 447 448 450 451 453 460 463 464 465 467 468 470 477 480 481 482 484 485 487 494 497 498 499 501 502 504 511 514 515 516 518 519 521 528 531 532 533 535 536 538
+
+untie 7 10 24 27 41 44 58 61 75 78 92 95 109 112 126 129 143 146 160 163 177 180 194 197 211 214 228 231 245 248 262 265 279 282 296 299 313 316 330 333 347 350 364 367 381 384 398 401 415 418 432 435 449 452 466 469 483 486 500 503 517 520 534 537
+
+untie 1 2 3 4 5 6 7 8 9 10 11 18 19 20 21 22 23 24 25 26 27 28 35 36 37 38 39 40 41 42 43 44 45 52 53 54 55 56 57 58 59 60 61 62 69 70 71 72 73 74 75 76 77 78 79 86 87 88 89 90 91 92 93 94 95 96 103 104 105 106 107 108 109 110 111 112 113 120 121 122 123 124 125 126 127 128 129 130 137 138 139 140 141 142 143 144 145 146 147 154 155 156 157 158 159 160 161 162 163 164 171 172 173 174 175 176 177 178 179 180 181 188 189 190 191 192 193 194 195 196 197 198 205 206 207 208 209 210 211 212 213 214 215 222 223 224 225 226 227 228 229 230 231 232 239 240 241 242 243 244 245 246 247 248 249 256 257 258 259 260 261 262 263 264 265 266 273 274 275 276 277 278 279 280 281 282 283 290 291 292 293 294 295 296 297 298 299 300 307 308 309 310 311 312 313 314 315 316 317 324 325 326 327 328 329 330 331 332 333 334 341 342 343 344 345 346 347 348 349 350 351 358 359 360 361 362 363 364 365 366 367 368 375 376 377 378 379 380 381 382 383 384 385 392 393 394 395 396 397 398 399 400 401 402 409 410 411 412 413 414 415 416 417 418 419 426 427 428 429 430 431 432 433 434 435 436 443 444 445 446 447 448 449 450 451 452 453 460 461 462 463 464 465 466 467 468 469 470 477 478 479 480 481 482 483 484 485 486 487 494 495 496 497 498 499 500 501 502 503 504 511 512 513 514 515 516 517 518 519 520 521 528 529 530 531 532 533 534 535 536 537 538
+
+mathpha expr='first1.pi+first2.pi+first3.pi+first4.pi+first5.pi+first6.pi+first7.pi+first8.pi+first9.pi+first10.pi' units='c' outfil='second1.pi' exposure='calc' areascal='%' ncomments=0
+
+mathpha expr='first11.pi+first12.pi+first13.pi+first14.pi+first15.pi+first16.pi' units='c' outfil='second2.pi' exposure='calc' areascal='%' ncomments=0
+
+mathpha expr='second1.pi+second2.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+for i in range(1,16):
+	print("addarf @",i,"-galaxyarf.lis out_ARF='first",i,".arf'",sep='')
+	
+addarf @1-galaxyarf.lis out_ARF='first1.arf'
+addarf @2-galaxyarf.lis out_ARF='first2.arf'
+addarf @3-galaxyarf.lis out_ARF='first3.arf'
+addarf @4-galaxyarf.lis out_ARF='first4.arf'
+addarf @5-galaxyarf.lis out_ARF='first5.arf'
+addarf @6-galaxyarf.lis out_ARF='first6.arf'
+addarf @7-galaxyarf.lis out_ARF='first7.arf'
+addarf @8-galaxyarf.lis out_ARF='first8.arf'
+addarf @9-galaxyarf.lis out_ARF='first9.arf'
+addarf @10-galaxyarf.lis out_ARF='first10.arf'
+addarf @11-galaxyarf.lis out_ARF='first11.arf'
+addarf @12-galaxyarf.lis out_ARF='first12.arf'
+addarf @13-galaxyarf.lis out_ARF='first13.arf'
+addarf @14-galaxyarf.lis out_ARF='first14.arf'
+
+
+addarf @2-1-galaxyarf.lis out_ARF='second1.arf'
+addarf @2-2-galaxyarf.lis out_ARF='second2.arf'
+addarf @3-1-galaxyarf.lis out_ARF='final.arf'
+
+
+addarf @15-galaxyarf.lis out_ARF='first15.arf'
+addarf @16-galaxyarf.lis out_ARF='first16.arf'	
+for i in range(1,16):
+	print("addrmf @",i,"-galaxyrmf.lis rmffile='first",i,".rmf'",sep='')
+	
+addrmf @1-galaxyrmf.lis rmffile='first1.rmf'
+addrmf @2-galaxyrmf.lis rmffile='first2.rmf'
+addrmf @3-galaxyrmf.lis rmffile='first3.rmf'
+addrmf @4-galaxyrmf.lis rmffile='first4.rmf'
+addrmf @5-galaxyrmf.lis rmffile='first5.rmf'
+addrmf @6-galaxyrmf.lis rmffile='first6.rmf'
+addrmf @7-galaxyrmf.lis rmffile='first7.rmf'
+addrmf @8-galaxyrmf.lis rmffile='first8.rmf'
+addrmf @9-galaxyrmf.lis rmffile='first9.rmf'
+addrmf @10-galaxyrmf.lis rmffile='first10.rmf'
+addrmf @11-galaxyrmf.lis rmffile='first11.rmf'
+addrmf @12-galaxyrmf.lis rmffile='first12.rmf'
+addrmf @13-galaxyrmf.lis rmffile='first13.rmf'
+addrmf @14-galaxyrmf.lis rmffile='first14.rmf'
+
+
+addrmf @2-1-galaxyrmf.lis rmffile='second1.rmf'
+addrmf @2-2-galaxyrmf.lis rmffile='second2.rmf'
+addrmf @3-1-galaxyrmf.lis rmffile='final.rmf'
+
+addrmf @15-galaxyrmf.lis rmffile='first15.rmf'
+addrmf @16-galaxyrmf.lis rmffile='first16.rmf'
+	
+addarf list='first1.arf,first2.arf,first3.arf,first4.arf,first5.arf,first6.arf,first7.arf,first8.arf,first9.arf,first10.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='second1.arf'
+
+addarf list='first11.arf,first12.arf,first13.arf,first14.arf,first15.arf' weights='0.2,0.2,0.2,0.2,0.2' out_ARF='second2.arf'
+
+addarf list='first11.arf,first12.arf,first13.arf,first14.arf,first15.arf,first16.arf' weights='0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666' out_ARF='second2.arf'
+
+addrmf list='first1.rmf,first2.rmf,first3.rmf,first4.rmf,first5.rmf,first6.rmf,first7.rmf,first8.rmf,first9.rmf,first10.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='second1.rmf'
+
+addrmf list='first11.rmf,first12.rmf,first13.rmf,first14.rmf,first15.rmf' weights='0.2,0.2,0.2,0.2,0.2' rmffile='second2.rmf'
+
+addrmf list='first11.rmf,first12.rmf,first13.rmf,first14.rmf,first15.rmf,first16.rmf' weights='0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666' rmffile='second2.rmf'
+
+addarf list='second1.arf,second2.arf' weights='0.5,0.5' out_ARF='0604961801-galaxy.arf'
+
+addrmf list='second1.rmf,second2.rmf' weights='0.5,0.5' rmffile='0604961801-galaxy.rmf'
+
+cp ../../0604961801/analysis/pnS005-back-full.pi ../0604961801/0604961801-back.pi
+
+grppha infile="final.pi" outfile="0604961801-galaxy-grp.pi" comm="group min 25&chkey RESPFILE 0604961801-galaxy.rmf&chkey ANCRFILE 0604961801-galaxy.arf&chkey BACKFILE 0604961801-back.pi&exit"
+
+cp ../../mapfiles/gal_exp_bks.py ../0604961801
+/usr/local/bin/python gal_exp_bks.py
+
+
+0.00811769040663*4.19212E-11+0.0159200488707*2.19542E-05+0.0212086371069*2.55749E-05+0.0339785118475*1.71500E-05+0.0176167159421*6.01884E-05+0.0193627178752*1.02560E-04+0.0203229641739*5.42831E-05+0.0334856318028*4.47632E-05+0.0293977672985*7.28014E-06+0.0323978926944*1.17241E-09+0.0364355847631*3.73473E-10+0.0240597680575*1.81581E-11+0.0408812163368*8.35183E-12+0.0334884256683*1.15711E-09+0.0429583879741*1.65916E-11+0.0330899044772*2.38061E-11+0.0328566430656*2.75818E-11+0.0429148809869*6.59919E-11+0.0373798468712*6.91188E-11+0.0358197863511*3.31757E-11+0.0255947423598*1.15037E-10+0.0327354467034*2.63045E-05+0.03937149811*1.76444E-06+0.0216702984868*4.28799E-06+0.0304965530113*6.67961E-12+0.023790895111*8.36175E-12+0.0342724710118*1.69597E-11+0.0341214792748*1.33290E-05+0.0407323448918*2.07156E-11+0.0459475956231*1.35396E-13+0.0393944113213*8.20713E-07+0.0401792415243*1.68772E-11
+
+0.00811769040663*2.54558E-10+0.0159200488707*1.48545E-06 +0.0212086371069* 1.02389E-09+0.0339785118475*1.51155E-12+0.0176167159421*1.25680E-10+0.0193627178752*6.77120E-13+0.0203229641739*7.51200E-06+0.0334856318028*4.72062E-06+0.0293977672985*3.75495E-06+0.0323978926944*1.38789E-05+0.0364355847631*1.81272E-11+0.0240597680575*1.46894E-05+0.0408812163368*9.34691E-11+0.0334884256683*7.82588E-14+0.0429583879741*1.18075E-11+0.0330899044772*6.76815E-12+0.0328566430656*1.59484E-13+0.0429148809869*5.04054E-13+0.0373798468712*1.89628E-12+0.0358197863511*1.15551E-06 +0.0255947423598*7.61863E-07+0.0327354467034*1.37309E-05+0.03937149811*1.66500E-05+0.0216702984868*7.93150E-12+0.0304965530113*3.79046E-12+0.023790895111*2.75391E-10+0.0342724710118*1.04024E-13+0.0341214792748*2.09910E-05+0.0407323448918*2.48701E-05+0.0459475956231*2.11267E-14+0.0393944113213*4.02665E-06+0.0401792415243*5.44949E-11 
+
+mathpha expr='0galaxy.pi + 1galaxy.pi + 2galaxy.pi + 3galaxy.pi + 4galaxy.pi + 5galaxy.pi + 6galaxy.pi + 7galaxy.pi + 8galaxy.pi + 9galaxy.pi  ' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='10galaxy.pi + 11galaxy.pi + 12galaxy.pi + 13galaxy.pi + 14galaxy.pi + 15galaxy.pi + 16galaxy.pi + 17galaxy.pi + 18galaxy.pi + 19galaxy.pi  ' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='20galaxy.pi + 21galaxy.pi + 22galaxy.pi + 23galaxy.pi + 24galaxy.pi + 25galaxy.pi + 26galaxy.pi + 27galaxy.pi + 28galaxy.pi + 29galaxy.pi  ' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='30galaxy.pi + 31galaxy.pi + 32galaxy.pi + 33galaxy.pi + 34galaxy.pi + 35galaxy.pi + 36galaxy.pi + 37galaxy.pi + 38galaxy.pi + 39galaxy.pi ' units='c' outfil='first4.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='40galaxy.pi + 41galaxy.pi + 42galaxy.pi + 43galaxy.pi + 44galaxy.pi + 45galaxy.pi + 46galaxy.pi + 47galaxy.pi + 48galaxy.pi + 49galaxy.pi  ' units='c' outfil='first5.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='50galaxy.pi + 51galaxy.pi + 52galaxy.pi + 53galaxy.pi + 54galaxy.pi + 55galaxy.pi + 56galaxy.pi + 57galaxy.pi + 58galaxy.pi + 59galaxy.pi  ' units='c' outfil='first6.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='60galaxy.pi + 61galaxy.pi + 62galaxy.pi + 63galaxy.pi + 64galaxy.pi + 65galaxy.pi + 66galaxy.pi + 67galaxy.pi + 68galaxy.pi + 69galaxy.pi  ' units='c' outfil='first7.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='70galaxy.pi + 71galaxy.pi + 72galaxy.pi + 73galaxy.pi + 74galaxy.pi + 75galaxy.pi + 76galaxy.pi + 77galaxy.pi + 78galaxy.pi + 79galaxy.pi  ' units='c' outfil='first8.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='80galaxy.pi + 81galaxy.pi + 82galaxy.pi + 83galaxy.pi + 84galaxy.pi + 85galaxy.pi + 86galaxy.pi + 87galaxy.pi + 88galaxy.pi + 89galaxy.pi  ' units='c' outfil='first9.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='90galaxy.pi + 91galaxy.pi + 92galaxy.pi + 93galaxy.pi + 94galaxy.pi + 95galaxy.pi + 96galaxy.pi + 97galaxy.pi + 98galaxy.pi + 99galaxy.pi  ' units='c' outfil='first10.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='100galaxy.pi + 101galaxy.pi + 102galaxy.pi + 103galaxy.pi + 104galaxy.pi + 105galaxy.pi + 106galaxy.pi + 107galaxy.pi + 108galaxy.pi + 109galaxy.pi  ' units='c' outfil='first11.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='110galaxy.pi + 111galaxy.pi + 112galaxy.pi + 113galaxy.pi + 114galaxy.pi + 115galaxy.pi + 116galaxy.pi + 117galaxy.pi + 118galaxy.pi + 119galaxy.pi  ' units='c' outfil='first12.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='120galaxy.pi + 121galaxy.pi + 122galaxy.pi + 123galaxy.pi + 124galaxy.pi + 125galaxy.pi + 126galaxy.pi + 127galaxy.pi + 128galaxy.pi + 129galaxy.pi ' units='c' outfil='first13.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='130galaxy.pi + 131galaxy.pi + 132galaxy.pi + 133galaxy.pi + 134galaxy.pi + 135galaxy.pi + 136galaxy.pi + 137galaxy.pi + 138galaxy.pi + 139galaxy.pi ' units='c' outfil='first14.pi' exposure='calc' areascal='%' ncomments=0
+
+mathpha expr='first1.pi + first2.pi + first3.pi + first4.pi + first5.pi + first6.pi + first7.pi  ' units='c' outfil='second1.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='first8.pi + first9.pi + first10.pi + first11.pi + first12.pi + first13.pi + first14.pi  ' units='c' outfil='second2.pi' exposure='calc' areascal='%' ncomments=0
+mathpha expr='second1.pi + second2.pi  ' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+

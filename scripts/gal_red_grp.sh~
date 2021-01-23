@@ -1,0 +1,364 @@
+#!/bin/sh
+
+. /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/ini_xmm.sh
+
+for i in 0108060701 0108061801 0555780301
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp1
+
+##mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+##mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+##mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi+23galaxy.pi+24galaxy.pi+25galaxy.pi+26galaxy.pi+27galaxy.pi+28galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+##mathpha expr='first1.pi+first2.pi+first3.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf,23galaxy.arf,24galaxy.arf,25galaxy.arf,26galaxy.arf,27galaxy.arf,28galaxy.arf' weights='0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='final.arf'
+
+##addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+##addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+##addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf,23galaxy.rmf,24galaxy.rmf,25galaxy.rmf,26galaxy.rmf,27galaxy.rmf,28galaxy.rmf' weights='0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111,0.1111111111111111' rmffile='first3.rmf'
+##addrmf list='first1.rmf,first2.rmf,first3.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='final.rmf'
+
+done
+
+for i in 0108062101 0555780501 0555780601 0555781001 0604960301 0604960801 0604961101
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp1
+
+##mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+##mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+##mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi+23galaxy.pi+24galaxy.pi+25galaxy.pi+26galaxy.pi+27galaxy.pi+28galaxy.pi+29galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+##mathpha expr='first1.pi+first2.pi+first3.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf,23galaxy.arf,24galaxy.arf,25galaxy.arf,26galaxy.arf,27galaxy.arf,28galaxy.arf,29galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf,23galaxy.rmf,24galaxy.rmf,25galaxy.rmf,26galaxy.rmf,27galaxy.rmf,28galaxy.rmf,29galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first3.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='final.rmf'
+
+done
+
+
+for i in 0108060401 0108060501 0108061901 0108062301 0555780101 0555780201 0555780401 0555780701 0555782301 0604960201 0604960401 0604960901 0604961001 0604961201 0604961801
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp1
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi+23galaxy.pi+24galaxy.pi+25galaxy.pi+26galaxy.pi+27galaxy.pi+28galaxy.pi+29galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi+30galaxy.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf,23galaxy.arf,24galaxy.arf,25galaxy.arf,26galaxy.arf,27galaxy.arf,28galaxy.arf,29galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf,30galaxy.arf' weights='0.25,0.25,0.25,0.25' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf,23galaxy.rmf,24galaxy.rmf,25galaxy.rmf,26galaxy.rmf,27galaxy.rmf,28galaxy.rmf,29galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first3.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf,30galaxy.rmf' weights='0.25,0.25,0.25,0.25' rmffile='final.rmf'
+
+done
+
+for i in 0108060601 0555780801 0555780901 0604960101 0604960501 0604960601 0604960701
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp1
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi+23galaxy.pi+24galaxy.pi+25galaxy.pi+26galaxy.pi+27galaxy.pi+28galaxy.pi+29galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi+30galaxy.pi+31galaxy.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf,23galaxy.arf,24galaxy.arf,25galaxy.arf,26galaxy.arf,27galaxy.arf,28galaxy.arf,29galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf,30galaxy.arf,31galaxy.arf' weights='0.2,0.2,0.2,0.2,0.2' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf,23galaxy.rmf,24galaxy.rmf,25galaxy.rmf,26galaxy.rmf,27galaxy.rmf,28galaxy.rmf,29galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first3.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf,30galaxy.rmf,31galaxy.rmf' weights='0.2,0.2,0.2,0.2,0.2' rmffile='final.rmf'
+
+done
+
+
+for i in 0108062101
+do 
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp2
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf' weights='0.5,0.5' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf' weights='0.5,0.5' rmffile='first3.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='final.rmf'
+
+done
+
+
+for i in 0108060501 0108060601 0108060701 0108061801 0108061901 0108062301 
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp2
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='first3.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='final.rmf'
+
+done
+
+
+for i in 0108060401 0555780101 0555780201 0555780301 0555780401 0555780501 0555780601 0555780701 0555780801 0555780901 0555781001 0555782301 0604960101 0604960201 0604960301 0604960401 0604960501 0604960601 0604960701 0604960801 0604960901 0604961001 0604961101 0604961201
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp2
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi+23galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf,23galaxy.arf' weights='0.25,0.25,0.25,0.25' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf,23galaxy.rmf' weights='0.25,0.25,0.25,0.25' rmffile='first3.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='final.rmf'
+
+done
+
+for i in 0604961801
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp2
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi+23galaxy.pi+24galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf,23galaxy.arf,24galaxy.arf' weights='0.2,0.2,0.2,0.2,0.2' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf,23galaxy.rmf,24galaxy.rmf' weights='0.2,0.2,0.2,0.2,0.2' rmffile='first3.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='final.rmf'
+
+done
+
+
+for i in 0108060401 0108060501 0108062301 0555780201 0555780301 
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp3
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi+23galaxy.pi+24galaxy.pi+25galaxy.pi+26galaxy.pi+27galaxy.pi+28galaxy.pi+29galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='30galaxy.pi+31galaxy.pi+32galaxy.pi+33galaxy.pi+34galaxy.pi+35galaxy.pi+36galaxy.pi+37galaxy.pi+38galaxy.pi+39galaxy.pi' units='c' outfil='first4.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='40galaxy.pi+41galaxy.pi' units='c' outfil='first5.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi+first4.pi+first5.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf,23galaxy.arf,24galaxy.arf,25galaxy.arf,26galaxy.arf,27galaxy.arf,28galaxy.arf,29galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first3.arf'
+addarf list='30galaxy.arf,31galaxy.arf,32galaxy.arf,33galaxy.arf,34galaxy.arf,35galaxy.arf,36galaxy.arf,37galaxy.arf,38galaxy.arf,39galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first4.arf'
+addarf list='40galaxy.arf,41galaxy.arf' weights='0.5,0.5' out_ARF='first5.arf'
+addarf list='first1.arf,first2.arf,first3.arf,first4.arf,first5.arf' weights='0.2,0.2,0.2,0.2,0.2' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf,23galaxy.rmf,24galaxy.rmf,25galaxy.rmf,26galaxy.rmf,27galaxy.rmf,28galaxy.rmf,29galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first3.rmf'
+#addrmf list='30galaxy.rmf,31galaxy.rmf,32galaxy.rmf,33galaxy.rmf,34galaxy.rmf,35galaxy.rmf,36galaxy.rmf,37galaxy.rmf,38galaxy.rmf,39galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first4.rmf'
+#addrmf list='40galaxy.rmf,41galaxy.rmf' weights='0.5,0.5' rmffile='first5.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf,first4.rmf,first5.rmf' weights='0.2,0.2,0.2,0.2,0.2' rmffile='final.rmf'
+
+done
+
+
+for i in 0108060601 0108060701 0108061801 0108061901 0108062101 0555780101 0555780501 0555780601 0555780701 0555780801 0555780901 0555781001 0555782301 0604960501 0604960601 0604960701 0604960801 0604960901 0604961001 0604961101 0604961201 0604961801
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp3
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi+23galaxy.pi+24galaxy.pi+25galaxy.pi+26galaxy.pi+27galaxy.pi+28galaxy.pi+29galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='30galaxy.pi+31galaxy.pi+32galaxy.pi+33galaxy.pi+34galaxy.pi+35galaxy.pi+36galaxy.pi+37galaxy.pi+38galaxy.pi+39galaxy.pi' units='c' outfil='first4.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='40galaxy.pi+41galaxy.pi+42galaxy.pi' units='c' outfil='first5.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi+first4.pi+first5.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf,23galaxy.arf,24galaxy.arf,25galaxy.arf,26galaxy.arf,27galaxy.arf,28galaxy.arf,29galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first3.arf'
+addarf list='30galaxy.arf,31galaxy.arf,32galaxy.arf,33galaxy.arf,34galaxy.arf,35galaxy.arf,36galaxy.arf,37galaxy.arf,38galaxy.arf,39galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first4.arf'
+addarf list='40galaxy.arf,41galaxy.arf,42galaxy.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='first5.arf'
+addarf list='first1.arf,first2.arf,first3.arf,first4.arf,first5.arf' weights='0.2,0.2,0.2,0.2,0.2' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf,23galaxy.rmf,24galaxy.rmf,25galaxy.rmf,26galaxy.rmf,27galaxy.rmf,28galaxy.rmf,29galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first3.rmf'
+#addrmf list='30galaxy.rmf,31galaxy.rmf,32galaxy.rmf,33galaxy.rmf,34galaxy.rmf,35galaxy.rmf,36galaxy.rmf,37galaxy.rmf,38galaxy.rmf,39galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first4.rmf'
+#addrmf list='40galaxy.rmf,41galaxy.rmf,42galaxy.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='first5.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf,first4.rmf,first5.rmf' weights='0.2,0.2,0.2,0.2,0.2' rmffile='final.rmf'
+
+done
+
+
+for i in 0555780401 0604960401
+do 
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp3
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi+23galaxy.pi+24galaxy.pi+25galaxy.pi+26galaxy.pi+27galaxy.pi+28galaxy.pi+29galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='30galaxy.pi+31galaxy.pi+32galaxy.pi+33galaxy.pi+34galaxy.pi+35galaxy.pi+36galaxy.pi+37galaxy.pi+38galaxy.pi+39galaxy.pi' units='c' outfil='first4.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='40galaxy.pi+41galaxy.pi+42galaxy.pi+43galaxy.pi' units='c' outfil='first5.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi+first4.pi+first5.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf,23galaxy.arf,24galaxy.arf,25galaxy.arf,26galaxy.arf,27galaxy.arf,28galaxy.arf,29galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first3.arf'
+addarf list='30galaxy.arf,31galaxy.arf,32galaxy.arf,33galaxy.arf,34galaxy.arf,35galaxy.arf,36galaxy.arf,37galaxy.arf,38galaxy.arf,39galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first4.arf'
+addarf list='40galaxy.arf,41galaxy.arf,42galaxy.arf,43galaxy.arf' weights='0.25,0.25,0.25,0.25' out_ARF='first5.arf'
+addarf list='first1.arf,first2.arf,first3.arf,first4.arf,first5.arf' weights='0.2,0.2,0.2,0.2,0.2' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf,23galaxy.rmf,24galaxy.rmf,25galaxy.rmf,26galaxy.rmf,27galaxy.rmf,28galaxy.rmf,29galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first3.rmf'
+#addrmf list='30galaxy.rmf,31galaxy.rmf,32galaxy.rmf,33galaxy.rmf,34galaxy.rmf,35galaxy.rmf,36galaxy.rmf,37galaxy.rmf,38galaxy.rmf,39galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first4.rmf'
+#addrmf list='40galaxy.rmf,41galaxy.rmf,42galaxy.rmf,43galaxy.rmf' weights='0.25,0.25,0.25,0.25' rmffile='first5.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf,first4.rmf,first5.rmf' weights='0.2,0.2,0.2,0.2,0.2' rmffile='final.rmf'
+
+done
+
+
+for i in 0108060701 0555780101 0555780301 0555780401 0555780501 0555780601 0555780801 0555780901 0555781001 0555782301 0604960101 0604960301 0604960801 0604960901 0604961001 0604961101 0604961201 0604961801
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp4
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf' weights='0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666' out_ARF='first2.arf'
+addarf list='first1.arf,first2.arf' weights='0.5,0.5' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf' weights='0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666,0.16666666666666666' rmffile='first2.rmf'
+#addrmf list='first1.rmf,first2.rmf' weights='0.5,0.5' rmffile='final.rmf'
+
+done
+
+
+for i in 0108060401 0108060501 0108060601 0108061801 0108061901 0108062101 0108062301 0555780201 0555780701 0604960201 0604960401 0604960501 0604960601 0604960701 
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp4
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf' weights='0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285' out_ARF='first2.arf'
+addarf list='first1.arf,first2.arf' weights='0.5,0.5' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf' weights='0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285,0.14285714285714285' rmffile='first2.rmf'
+#addrmf list='first1.rmf,first2.rmf' weights='0.5,0.5' rmffile='final.rmf'
+
+done
+
+
+
+for i in 0108060501 
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp5
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf' weights='0.5,0.5' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf' weights='0.5,0.5' rmffile='first3.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='final.rmf'
+
+done
+
+
+for i in 0108060401 0555780401 0555782301 0604960101 0604960601 
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp5
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='first3.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='final.rmf'
+
+done
+
+
+for i in 0108060601 0108060701 0108061801 0108061901 0108062101 0108062301 0555780101 0555780201 0555780301 0555780501 0555780601 0555780701 0555780801 0555780901 0555781001 0604960201 0604960301 0604960401 0604960501 0604960701 0604960801 0604960901 0604961001 0604961101 0604961201 0604961801
+do
+cd /raid2/dxb/xmm/analysis/CDFS/hsc/ellipse/Galaxy/$i/redshift/grp5
+
+#mathpha expr='0galaxy.pi+1galaxy.pi+2galaxy.pi+3galaxy.pi+4galaxy.pi+5galaxy.pi+6galaxy.pi+7galaxy.pi+8galaxy.pi+9galaxy.pi' units='c' outfil='first1.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='10galaxy.pi+11galaxy.pi+12galaxy.pi+13galaxy.pi+14galaxy.pi+15galaxy.pi+16galaxy.pi+17galaxy.pi+18galaxy.pi+19galaxy.pi' units='c' outfil='first2.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='20galaxy.pi+21galaxy.pi+22galaxy.pi+23galaxy.pi' units='c' outfil='first3.pi' exposure='calc' areascal='%' ncomments=0
+#mathpha expr='first1.pi+first2.pi+first3.pi' units='c' outfil='final.pi' exposure='calc' areascal='%' ncomments=0
+
+addarf list='0galaxy.arf,1galaxy.arf,2galaxy.arf,3galaxy.arf,4galaxy.arf,5galaxy.arf,6galaxy.arf,7galaxy.arf,8galaxy.arf,9galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first1.arf'
+addarf list='10galaxy.arf,11galaxy.arf,12galaxy.arf,13galaxy.arf,14galaxy.arf,15galaxy.arf,16galaxy.arf,17galaxy.arf,18galaxy.arf,19galaxy.arf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' out_ARF='first2.arf'
+addarf list='20galaxy.arf,21galaxy.arf,22galaxy.arf,23galaxy.arf' weights='0.25,0.25,0.25,0.25' out_ARF='first3.arf'
+addarf list='first1.arf,first2.arf,first3.arf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' out_ARF='final.arf'
+
+#addrmf list='0galaxy.rmf,1galaxy.rmf,2galaxy.rmf,3galaxy.rmf,4galaxy.rmf,5galaxy.rmf,6galaxy.rmf,7galaxy.rmf,8galaxy.rmf,9galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first1.rmf'
+#addrmf list='10galaxy.rmf,11galaxy.rmf,12galaxy.rmf,13galaxy.rmf,14galaxy.rmf,15galaxy.rmf,16galaxy.rmf,17galaxy.rmf,18galaxy.rmf,19galaxy.rmf' weights='0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1' rmffile='first2.rmf'
+#addrmf list='20galaxy.rmf,21galaxy.rmf,22galaxy.rmf,23galaxy.rmf' weights='0.25,0.25,0.25,0.25' rmffile='first3.rmf'
+#addrmf list='first1.rmf,first2.rmf,first3.rmf' weights='0.3333333333333333,0.3333333333333333,0.3333333333333333' rmffile='final.rmf'
+
+done

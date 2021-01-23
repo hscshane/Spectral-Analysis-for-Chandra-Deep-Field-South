@@ -1,0 +1,288 @@
+#!/usr/local/bin/python
+from __future__ import print_function
+import numpy
+import numpy as np
+#import pyfits
+#from pyslalib import slalib
+#import pywcs
+from astropy import wcs
+from astropy.io import fits
+import math
+from math import *
+import re
+from glob import glob
+from shapely.geometry import Point
+from shapely.geometry.polygon import Polygon
+import matplotlib
+import matplotlib.patches as patches
+
+degtorad = math.pi / 180
+
+sky_x1 = []
+sky_y1 = []
+R1 = []
+flux1 = []
+radius1 = []
+
+sky_x2 = []
+sky_y2 = []
+R2 = []
+flux2 = []
+radius2 = []
+
+sky_x3 = []
+sky_y3 = []
+R3 = []
+flux3 = []
+radius3 = []
+
+sky_x4 = []
+sky_y4 = []
+R4 = []
+flux4 = []
+radius4 = []
+star_type = []
+
+sky_x5 = []
+sky_y5 = []
+R5 = []
+flux5 = []
+radius5 = []
+star_type = []
+
+xmm_x = []
+xmm_y = []
+xmm_r = []
+
+el_x = []
+el_y = []
+el_maj = []
+el_min = []
+el_ang = []
+
+file = 'pnS005-cheese.fits'
+hdulist = fits.open(file)
+cra = hdulist[0].header['CRVAL1'] # cra = central ra
+cdec = hdulist[0].header['CRVAL2'] # cdec = central dec
+hdulist.close()
+
+file = 'poly_input.reg'
+f = open(file)
+lines = f.readlines()
+f.close()
+
+chandra_ra = []
+chandra_dec = []
+for i in range(1,len(lines)):
+  chandra_ra.append(float(re.split('\s+',lines[i])[1]))
+  chandra_dec.append(float(re.split('\s+',lines[i])[2]))
+  
+wcs = wcs.WCS(naxis=2)
+wcs.wcs.crpix = [25921,25921] # sky (x,y) pixel coordinate referece pixel
+wcs.wcs.cdelt = np.array([-1.38888889e-05,   1.38888889e-05]) # pixel size 0.05"
+wcs.wcs.crval = [float(cra) , float(cdec)] # (ra,dec) value at reference pixel
+wcs.wcs.ctype = ['RA---TAN', 'DEC--TAN']
+num = len(chandra_ra)
+px = np.zeros((num))
+py = np.zeros((num))
+for i in range(0,num):
+    skycoord = np.array([[chandra_ra[i], chandra_dec[i]]])
+    pixcoord = wcs.wcs_world2pix(skycoord,1)
+    px[i] = pixcoord[0][0]
+    py[i] = pixcoord[0][1]
+
+poly = []
+for i in range(0,len(px)):
+    poly.append((px[i],py[i]))
+
+polygon = Polygon(poly)    
+
+infile = 'pnS005-bkg_region-sky-original.fits'
+hdu = fits.open(infile)
+data = hdu[1].data
+lnum = len(data)
+for i in range(0,lnum):
+	tx = data[i]['X']
+	ty = data[i]['Y']
+	tr = data[i]['R']
+	xmm_x.append(float(tx[0]))
+	xmm_y.append(float(ty[0]))
+	xmm_r.append(float(tr[0]))
+hdu.close()	
+
+infile = 'pnS005-bkg_region-sky.fits'
+hdu = fits.open(infile)
+data = hdu[1].data
+cnum = len(data)
+for i in range(0,cnum):
+  if data[i]['SHAPE'] == '!ELLIPSE':
+    ex = data[i]['X']
+    ey = data[i]['Y']
+    er = data[i]['R']
+    ea = data[i]['ROTANG']
+    el_x.append(float(ex[0]))
+    el_y.append(float(ey[0]))
+    el_maj.append(float(er[0]))
+    el_min.append(float(er[1]))
+    el_ang.append(float(ea[0]))
+  else:
+    continue
+hdu.close()	
+enum = len(el_x)
+#polygon = Polygon([(24011.7541506,12631.2473442),
+#(25070.3740137,12814.3173293), (25857.5199991,12916.5326742),
+#(26487.1471223,13487.0457314), (27588.9209337,14518.8000583),
+#(28769.4956769,15418.6077653), (29404.6041057,15938.9127086),
+#(30028.7603485,16520.9478174), (30737.1046818,16977.4564172),
+#(31517.174634,17435.0733827), (32232.5541188,17882.5849327),
+#(32940.9041249,18346.8133245), (33570.557746,18876.9354504),
+#(34215.6312415,19403.8224571), (34874.5673353,19954.9765269),
+#(35371.0654593,20584.8980448), (35891.8697845,21293.5255452),
+#(35789.3365067,22316.852615), (35676.4317792,23418.8870042),
+#(35410.3693021,24284.7297386), (35280.5070838,25229.3134463),
+#(35093.8598519,26173.9615015), (34670.5598415,26995.1044718),
+#(34355.4389609,27839.5805559), (33932.5138229,28692.6507274),
+#(33508.9354235,29558.5145555), (33044.0852741,30345.5527399),
+#(32568.9439623,31132.6440396), (32050.9378241,31840.9718847),
+#(31463.161556,32549.3150991), (30890.4353599,33230.5327777),
+#(30417.9337775,33965.8684028), (30012.7749759,34516.9642445),
+#(29456.945374,35225.2853952), (28921.790507,35726.1265077),
+#(28291.8820409,36308.8970398), (27347.1698279,36520.590188),
+#(25615.2684126,36879.2038325), (24670.6547809,36789.6139017),
+#(23725.9486574,36879.047935), (22938.8878427,36482.9304715),
+#(22073.0390635,36036.799966), (21049.7737128,35789.5597047),
+#(20026.4458117,35540.7462653), (19264.5112696,35143.9920603),
+#(18373.5183715,34756.3292618), (16799.337741,33922.1195524),
+#(16169.7568461,33323.3998278), (15540.1387302,32680.7090951),
+#(14890.4312804,32072.7876628), (13887.5479936,30696.609439),
+#(13257.9422892,30094.4145651), (12785.8192027,29309.1206305),
+#(12457.1572584,28372.3404222), (11684.3940361,26602.3531673),
+#(11395.5578637,25616.8548575), (11212.5774923,24562.0644566),
+#(11212.8190058,23620.5130746), (11527.9726791,22709.716267),
+#(12080.7860922,22074.5901852), (12709.1117478,21378.0652109),
+#(13276.9572942,20736.6889191), (13844.2398069,20028.3823726),
+#(14362.7394277,19316.3627536), (14913.9934865,18549.5628082),
+#(15386.46204,17901.4188566), (15937.7308613,17165.21904),
+#(16431.4113733,16407.8860632), (17094.1835747,15778.3005084),
+#(17670.0231917,15211.2074202), (18252.0574336,14597.7813616),
+#(18851.133137,14026.4475933), (19559.741969,13548.9029991),
+#(20268.3715099,13098.2220823), (21134.323459,12911.3859527),
+#(22236.4169897,12810.8978873)])
+file = 'pnS005-bkg_region-sky-type.fits'
+hdulist = fits.open(file)
+tbdata = hdulist[1].data
+for i in range(0,739):
+	if tbdata[i]['TYPE'] == 'GALAXY':
+		tempx = tbdata[i]['X']
+		tempy = tbdata[i]['Y']
+		tempr = tbdata[i]['R']
+		tempf = tbdata[i]['FLUX']
+		point = Point(tempx[0],tempy[0])
+		points_array = np.array([[tempx[0],tempy[0]]])
+		if polygon.contains(point):
+		    #Point in polygon
+		    flag = 0
+		else:
+		    flag = 1
+		for k in range(0,lnum):
+			difx = xmm_x[k] - tempx[0]
+			dify = xmm_y[k] - tempy[0]
+			difr = (math.sqrt(difx ** (2) + dify ** (2)))
+			if difr <= xmm_r[k]:
+			  #Point in XMM Circles
+			  flag = 1
+			  break
+		for j in range(0,enum):
+			g_ell_center = (el_x[j], el_y[j])
+			g_ell_width = el_maj[j]
+			g_ell_height = el_min[j]
+			angle = el_ang[j]
+			g_ellipse = patches.Ellipse(g_ell_center, g_ell_width, g_ell_height, angle=angle, fill=False, edgecolor='green', linewidth=2)
+			#cos_angle = np.cos(np.radians(180. - angle))
+			#sin_angle = np.sin(np.radians(180. - angle))
+			#xc = tempx[0] - g_ell_center[0]
+			#yc = tempy[0] - g_ell_center[1]
+			#xct = xc * cos_angle - yc * sin_angle
+			#yct = xc * sin_angle + yc * cos_angle 
+			#rad_cc = (xct ** 2 / (g_ell_width / 2.) ** 2) + (yct ** 2 / (g_ell_height / 2.) ** 2)
+			#for r in rad_cc:
+			  #if r <= 1.:flag = 1
+			  #else:continue
+			for point in points_array:
+			  if g_ellipse.contains_point(point, radius=0):
+			    flag = 1
+		if flag == 1:
+		  continue
+		else:
+		 if tempf > 1.0E-17 and tempf < 2.0E-16:
+		  sky_x1.append(float(tempx[0]))
+		  sky_y1.append(float(tempy[0]))
+		  R1.append(float(tempr[0]))
+		  flux1.append(float(tempf))
+		  star_type.append('GALAXY')
+		 elif tempf >= 5.0E-17 and tempf < 1.0E-16:
+		  sky_x2.append(float(tempx[0]))
+		  sky_y2.append(float(tempy[0]))
+		  R2.append(float(tempr[0]))
+		  flux2.append(float(tempf))
+		  star_type.append('GALAXY')
+		 elif tempf >= 1.0E-16 and tempf < 2.0E-16: 
+		  sky_x3.append(float(tempx[0]))
+		  sky_y3.append(float(tempy[0]))
+		  R3.append(float(tempr[0]))
+		  flux3.append(float(tempf))
+		  star_type.append('GALAXY')
+		 else:
+		  sky_x4.append(float(tempx[0]))
+		  sky_y4.append(float(tempy[0]))
+		  R4.append(float(tempr[0]))
+		  flux4.append(float(tempf))
+		  star_type.append('GALAXY')
+	else:
+		continue
+hdulist.close()
+		
+		
+a = len(sky_x1)
+b = len(sky_x2)
+c = len(sky_x3)
+d = len(sky_x4)
+
+for i in range(0,a):
+	rad = float(R1[i])
+	radius1.append(rad)
+
+for i in range(0,b):
+	rad = float(R2[i])
+	radius2.append(rad)
+
+for i in range(0,c):
+	rad = float(R3[i])
+	radius3.append(rad)
+
+for i in range(0,d):
+	rad = float(R4[i])
+	radius4.append(rad)
+	
+
+for i in range(0,a):
+	fout = open('GALAXY_CAT1','at')
+	print(sky_x1[i],sky_y1[i],radius1[i],flux1[i],star_type[i],file=fout)
+	fout.close()
+	
+for i in range(0,b):
+	fout = open('GALAXY_CAT1','at')
+	print(sky_x2[i],sky_y2[i],radius2[i],flux2[i],star_type[i],file=fout)
+	fout.close()
+
+for i in range(0,c):
+	fout = open('GALAXY_CAT1','at')
+	print(sky_x3[i],sky_y3[i],radius3[i],flux3[i],star_type[i],file=fout)
+	fout.close()	
+
+for i in range(0,d):
+	fout = open('GALAXY_CAT1','at')
+	print(sky_x4[i],sky_y4[i],radius4[i],flux4[i],star_type[i],file=fout)
+	fout.close()
+	
+

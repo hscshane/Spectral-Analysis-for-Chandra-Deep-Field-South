@@ -1,0 +1,90 @@
+#!/usr/local/bin/python
+from __future__ import print_function
+import numpy
+import numpy as np
+from astropy.io import fits
+from pyslalib import slalib
+import pywcs
+import math
+from math import *
+import re
+from glob import glob
+import os
+
+x=[]
+y=[]
+r=[]
+sb=[]
+chandra_type = []
+chandra_theta = []
+
+file = '/raid2/dxb/xmm/analysis/CDFS/hsc/AGN/0108060401/pnS005-cheese.fits'
+hdulist = fits.open(file)
+cra = hdulist[0].header['CRVAL1'] # cra = central ra
+cdec = hdulist[0].header['CRVAL2'] # cdec = central dec
+hdulist.close()
+
+file = '/raid2/dxb/xmm/analysis/CDFS/hsc/AGN/0108060401/CDFS4MS_sb.fits'
+hdulist = fits.open(file)
+tbdata = hdulist[1].data
+for i in range(0,739):
+    if str(tbdata[i]['BROAD_TYPE']) == 'AGN':
+        x.append(float(tbdata[i]['RA']))
+        y.append(float(tbdata[i]['DEC']))
+        sb.append(abs(float(tbdata[i]['SB_FLUX'])))
+        chandra_type.append(str(tbdata[i]['BROAD_TYPE']))
+hdulist.close()
+
+num = len(x)
+
+for i in range(0,num):
+  theta = math.acos(math.sin(math.radians(y[i])) * math.sin(math.radians(cdec)) + math.cos(math.radians(y[i])) * math.cos(math.radians(cdec)) * math.cos(math.radians((x[i]-cra)))) 
+  chandra_theta.append(math.degrees(theta))
+  z = float(chandra_theta[i] * 60)
+  rad = float(0.5 * 16.6 + (1.27 * z)) 
+  r.append(rad)
+
+
+name=['0108060401','0108060501','0108060601','0108060701','0108061801','0108061901','0108062101','0108062301','0555780101','0555780201','0555780301','0555780401','0555780501','0555780601','0555780701','0555780801','0555780901','0555781001','0555782301','0604960101','0604960201','0604960301','0604960401','0604960501','0604960601','0604960701','0604960801','0604960901','0604961001','0604961101','0604961201','0604961801']
+
+for i in range(1,7):
+    file='/raid2/dxb/xmm/analysis/CDFS/hsc/AGN/0108060401/sb%s.reg' % (i)
+    fout=open(file,'at')
+    print('# Region file format: DS9 version 4.1',file=fout)
+    print('global color=yellow dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1',file=fout)
+    print('fk5',file=fout)
+    fout.close()
+    
+    
+for i in range(0,len(x)):
+    if sb[i] >= 1.0E-14 :
+        file='/raid2/dxb/xmm/analysis/CDFS/hsc/AGN/0108060401/sb1.reg'
+        fout=open(file,'at')
+        print('+Circle(',x[i],',',y[i],',',r[i],"')",sep='',file=fout)
+        fout.close()
+    elif sb[i] >= 1.0E-15 and sb[i] < 1.0E-14:
+        file='/raid2/dxb/xmm/analysis/CDFS/hsc/AGN/0108060401/sb2.reg'
+        fout=open(file,'at')
+        print('+Circle(',x[i],',',y[i],',',r[i],"')",sep='',file=fout)
+        fout.close()
+    elif sb[i] >= 2.0E-16 and sb[i] < 1.0E-15:
+        file='/raid2/dxb/xmm/analysis/CDFS/hsc/AGN/0108060401/sb3.reg'
+        fout=open(file,'at')
+        print('+Circle(',x[i],',',y[i],',',r[i],"')",sep='',file=fout)
+        fout.close()
+    elif sb[i] >= 1.0E-16 and sb[i] < 2.0E-16:
+        file='/raid2/dxb/xmm/analysis/CDFS/hsc/AGN/0108060401/sb4.reg'
+        fout=open(file,'at')
+        print('+Circle(',x[i],',',y[i],',',r[i],"')",sep='',file=fout)
+        fout.close()
+    elif sb[i] >= 5.0E-17 and sb[i] < 1.0E-16:
+        file='/raid2/dxb/xmm/analysis/CDFS/hsc/AGN/0108060401/sb5.reg'
+        fout=open(file,'at')
+        print('+Circle(',x[i],',',y[i],',',r[i],"')",sep='',file=fout)
+        fout.close()
+    elif sb[i] >= 1.0E-17 and sb[i] < 5.0E-17:
+        file='/raid2/dxb/xmm/analysis/CDFS/hsc/AGN/0108060401/sb6.reg'
+        fout=open(file,'at')
+        print('+Circle(',x[i],',',y[i],',',r[i],"')",sep='',file=fout)
+        fout.close()
+    

@@ -1,0 +1,13 @@
+\s(dxb_90_y) data
+\s(dxb_90_fit) fit
+\s(dxb_90_a1) local thermal
+\s(dxb_90_a2) absorbed thermal
+\s(dxb_90_ga1) OVII
+\s(dxb_90_ga2) OVIII
+\s(dxb_90_po) powerlaw
+
+
+Normailzed Counts s\S-1\M keV\S-1\M
+
+
+Energy (keV)
